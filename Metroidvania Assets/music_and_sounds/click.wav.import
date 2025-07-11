@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ocwqjfecsewn"
+path="res://.godot/imported/click.wav-454959539b706b8bff58be643e6769e3.sample"
+
+[deps]
+
+source_file="res://Metroidvania Assets/music_and_sounds/click.wav"
+dest_files=["res://.godot/imported/click.wav-454959539b706b8bff58be643e6769e3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
