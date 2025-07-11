@@ -107,14 +107,20 @@ jump_height = 100.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.5
 
+[node name="PlayerBlaster" parent="." instance=ExtResource("3_xpso2")]
+show_behind_parent = true
+position = Vector2(2, -9)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
 texture = ExtResource("1_6oa8g")
 hframes = 12
 
-[node name="PlayerBlaster" parent="Sprite2D" instance=ExtResource("3_xpso2")]
-show_behind_parent = true
-position = Vector2(2, 4)
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Sprite2D"]
+position = Vector2(2, 3)
+remote_path = NodePath("../../PlayerBlaster")
+update_rotation = false
+update_scale = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)

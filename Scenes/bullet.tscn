@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://fyvh76bp8d8g"]
+
+[ext_resource type="Texture2D" uid="uid://c6lq7xivugatl" path="res://Metroidvania Assets/player/player_bullet.png" id="1_7vqyg"]
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7vqyg")
+hframes = 2
+frame = 1

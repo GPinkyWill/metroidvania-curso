@@ -10,6 +10,9 @@ const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 @export var jump_force = 128
 @export var max_fall_velocity = 120
 
+@onready var player_blaster: Node2D = $PlayerBlaster
+
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var coyote_jump_timer: Timer = $Coyote_Jump_Timer
@@ -35,6 +38,12 @@ func _physics_process(delta: float) -> void:
 		apply_friction(delta)
 	
 	jump_check()
+	
+	#Checando se deu tiro
+	if Input.is_action_just_pressed("fire"):
+		player_blaster.fire_bullet()
+	
+	
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
