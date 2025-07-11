@@ -92,7 +92,5 @@ func update_animations (input_axis):
 		animation_player.play("jump")
 
 func create_dust_effect():
-	var dust_effect = DustEffectScene.instantiate()
-	var main = get_tree().current_scene
-	main.add_child(dust_effect)
-	dust_effect.global_position = global_position
+	Utils.instantiate_scene_on_world(DustEffectScene,global_position)
+	
