@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://3th3a56n1xr0"]
+[gd_scene load_steps=10 format=3 uid="uid://3th3a56n1xr0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1n3rx"]
 [ext_resource type="Texture2D" uid="uid://d3hp68esrcte7" path="res://Metroidvania Assets/player/player.png" id="1_6oa8g"]
+[ext_resource type="PackedScene" uid="uid://dcnssv2x1m3kg" path="res://Scenes/player_blaster.tscn" id="3_xpso2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpjlh"]
 size = Vector2(8, 14)
@@ -110,6 +111,10 @@ jump_time_to_descent = 0.5
 position = Vector2(0, -12)
 texture = ExtResource("1_6oa8g")
 hframes = 12
+
+[node name="PlayerBlaster" parent="Sprite2D" instance=ExtResource("3_xpso2")]
+show_behind_parent = true
+position = Vector2(2, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)

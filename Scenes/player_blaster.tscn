@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcnssv2x1m3kg"]
+
+[ext_resource type="Script" path="res://Scripts/player_blaster.gd" id="1_jthcd"]
+[ext_resource type="Texture2D" uid="uid://cbqvil2tdfes3" path="res://Metroidvania Assets/player/player_blaster.png" id="2_yis48"]
+
+[node name="PlayerBlaster" type="Node2D"]
+script = ExtResource("1_jthcd")
+
+[node name="BlasterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yis48")
+offset = Vector2(4, 0)
+
+[node name="Muzzle" type="Marker2D" parent="BlasterSprite"]
+position = Vector2(11, 0)

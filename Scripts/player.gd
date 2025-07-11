@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	velocity.y += _get_gravity() * delta
 	#Movimentação direita e esquerda
-	var input_axis = Input.get_axis("ui_left","ui_right")
+	var input_axis = Input.get_axis("move_left","move_right")
 	if is_moving(input_axis):
 		apply_acceleration(delta, input_axis)
 	else:
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
-	var just_left_edge = was_on_floor and not is_on_floor()
+	var just_left_edge = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_edge:
 		coyote_jump_timer.start()
 func is_moving(input_axis):
@@ -65,15 +65,18 @@ func apply_friction(delta):
 		
 func jump_check ():
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("jump"):
 			jump()
-	if !is_on_floor() and Input.is_action_just_released("ui_accept") and velocity.y < -jump_force/2:
+	if !is_on_floor() and Input.is_action_just_released("jump") and velocity.y < -jump_force/2:
 		velocity.y = -jump_force/2
 
 func update_animations (input_axis):
+	sprite_2d.scale.x = sign(get_local_mouse_position().x)
+	if abs(sprite_2d.scale.x) != 1: sprite_2d.scale.x = 1
 	if is_moving(input_axis):
 		animation_player.play("run")
-		sprite_2d.scale.x = sign(input_axis)
+		animation_player.speed_scale = sprite_2d.scale.x * input_axis
+		
 	else:
 		animation_player.play("idle")
 	if not is_on_floor():
