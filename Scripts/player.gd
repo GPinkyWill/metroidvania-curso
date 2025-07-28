@@ -10,6 +10,8 @@ const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 @export var jump_force = 128
 @export var max_fall_velocity = 120
 
+@onready var fire_rate_timer: Timer = $FireRateTimer
+
 @onready var player_blaster: Node2D = $PlayerBlaster
 
 
@@ -40,8 +42,9 @@ func _physics_process(delta: float) -> void:
 	jump_check()
 	
 	#Checando se deu tiro
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
 		player_blaster.fire_bullet()
+		fire_rate_timer.start()
 	
 	
 	update_animations(input_axis)
@@ -50,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	var just_left_edge = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_edge:
 		coyote_jump_timer.start()
+		
+
 func is_moving(input_axis):
 	return input_axis != 0
 
