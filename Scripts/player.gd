@@ -11,6 +11,7 @@ const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 @export var max_fall_velocity = 120
 
 @onready var fire_rate_timer: Timer = $FireRateTimer
+@onready var drop_timer: Timer = $DropTimer
 
 @onready var player_blaster: Node2D = $PlayerBlaster
 
@@ -46,7 +47,10 @@ func _physics_process(delta: float) -> void:
 		player_blaster.fire_bullet()
 		fire_rate_timer.start()
 	
-	
+	#Cair da plataforma
+	if Input.is_action_just_pressed("crouch"):
+		set_collision_mask_value(2, false)
+		drop_timer.start()
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -99,3 +103,7 @@ func update_animations (input_axis):
 func create_dust_effect():
 	Utils.instantiate_scene_on_world(DustEffectScene,global_position)
 	
+
+
+func _on_drop_timer_timeout() -> void:
+	set_collision_mask_value(2, true)
