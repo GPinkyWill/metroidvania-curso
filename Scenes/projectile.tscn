@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_0kdm6"]
 
 [node name="projectile" type="Node2D"]
+z_index = 15
 script = ExtResource("1_0kdm6")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
