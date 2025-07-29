@@ -12,6 +12,7 @@ const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 
 @onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var drop_timer: Timer = $DropTimer
+@onready var camera_2d: Camera2D = $Camera2D
 
 @onready var player_blaster: Node2D = $PlayerBlaster
 
@@ -107,3 +108,11 @@ func create_dust_effect():
 
 func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
+
+
+
+
+func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
+	camera_2d.reparent(get_tree().current_scene)
+	queue_free()
+	print(damage)

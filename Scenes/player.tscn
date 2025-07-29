@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://3th3a56n1xr0"]
+[gd_scene load_steps=12 format=3 uid="uid://3th3a56n1xr0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1n3rx"]
 [ext_resource type="Texture2D" uid="uid://d3hp68esrcte7" path="res://Metroidvania Assets/player/player.png" id="1_6oa8g"]
 [ext_resource type="PackedScene" uid="uid://dcnssv2x1m3kg" path="res://Scenes/player_blaster.tscn" id="3_xpso2"]
+[ext_resource type="PackedScene" uid="uid://r3ecbujqgo4p" path="res://Collisions/hurt_box.tscn" id="4_dvyr1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpjlh"]
-size = Vector2(8, 14)
+size = Vector2(8, 15)
 
 [sub_resource type="Animation" id="Animation_ul3wl"]
 length = 0.001
@@ -99,6 +100,9 @@ _data = {
 "run": SubResource("Animation_x7bqv")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbvhg"]
+size = Vector2(7, 15)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 collision_layer = 4
@@ -126,7 +130,7 @@ update_rotation = false
 update_scale = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_lpjlh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -149,4 +153,13 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="HurtBox" parent="." instance=ExtResource("4_dvyr1")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-0.5, -7.5)
+shape = SubResource("RectangleShape2D_rbvhg")
+debug_color = Color(0.964954, 0, 0.489642, 0.42)
+
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]

@@ -38,3 +38,8 @@ func is_at_ledge():
 func turn_around():
 	direction *= -1.0
 	
+
+
+func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
+	print(damage)
+	queue_free()

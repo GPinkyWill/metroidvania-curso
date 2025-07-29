@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://8x03mky1chm3"]
+[gd_scene load_steps=8 format=3 uid="uid://8x03mky1chm3"]
 
 [ext_resource type="Texture2D" uid="uid://c6lq7xivugatl" path="res://Metroidvania Assets/player/player_bullet.png" id="1_7vqyg"]
 [ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_ragym"]
@@ -56,6 +56,10 @@ _data = {
 "fire": SubResource("Animation_ygkjo")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ov685"]
+radius = 2.0
+height = 8.0
+
 [node name="bullet" instance=ExtResource("1_ragym")]
 script = ExtResource("2_awlvc")
 
@@ -68,3 +72,10 @@ libraries = {
 "": SubResource("AnimationLibrary_mwvam")
 }
 autoplay = "fire"
+
+[node name="HitBox" parent="." index="3"]
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ov685")
