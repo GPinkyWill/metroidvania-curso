@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 15.0
+@export var speed = 30.0
 @export var turn_at_ledges = true
 
 
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_wall():
 		turn_around()
-	if is_at_ledge():
+	if is_at_ledge() and turn_at_ledges:
 		turn_around()
 	moving()
 	
@@ -37,5 +37,4 @@ func is_at_ledge():
 	
 func turn_around():
 	direction *= -1.0
-	floor_cast.scale.x = direction
 	
