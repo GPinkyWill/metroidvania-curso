@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://p85tqi5yeapk"]
+
+[ext_resource type="Texture2D" uid="uid://b3cw6co27gyhc" path="res://Metroidvania Assets/effects/jump_effect.png" id="1_3372p"]
+[ext_resource type="Script" path="res://Effects/effect.gd" id="2_ryofu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g58xa"]
+atlas = ExtResource("1_3372p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbo81"]
+atlas = ExtResource("1_3372p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvuu6"]
+atlas = ExtResource("1_3372p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd6fo"]
+atlas = ExtResource("1_3372p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3moaj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g58xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbo81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvuu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd6fo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="JumpEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_3moaj")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+offset = Vector2(0, -8)
+script = ExtResource("2_ryofu")

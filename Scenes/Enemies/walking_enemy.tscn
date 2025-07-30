@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdaor2bennd6u"]
+[gd_scene load_steps=9 format=3 uid="uid://bdaor2bennd6u"]
 
 [ext_resource type="Script" path="res://Scripts/walking_enemy.gd" id="1_cuj4q"]
 [ext_resource type="Texture2D" uid="uid://b1h8jxvnvujx2" path="res://Metroidvania Assets/enemies/walking_enemy.png" id="2_hr2x0"]
 [ext_resource type="PackedScene" uid="uid://r3ecbujqgo4p" path="res://Collisions/hurt_box.tscn" id="3_ltjxs"]
 [ext_resource type="PackedScene" uid="uid://ccia5xehteh6o" path="res://Collisions/hit_box.tscn" id="4_u8iov"]
+[ext_resource type="PackedScene" uid="uid://bx1yuncv32ar3" path="res://Stats/stats.tscn" id="5_0dgg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w35uo"]
 size = Vector2(10, 10)
@@ -49,4 +50,7 @@ position = Vector2(-0.5, -10)
 shape = SubResource("RectangleShape2D_0o2pr")
 debug_color = Color(0.917677, 0.0915779, 0.661607, 0.42)
 
+[node name="Stats" parent="." instance=ExtResource("5_0dgg1")]
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

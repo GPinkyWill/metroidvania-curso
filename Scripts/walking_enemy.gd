@@ -9,6 +9,7 @@ var direction = 1.0
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var floor_cast: RayCast2D = $FloorCast
+@onready var stats: Node = $Stats
 
 
 
@@ -41,5 +42,8 @@ func turn_around():
 
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
-	print(damage)
+	stats.health -= damage
+
+
+func _on_stats_no_health() -> void:
 	queue_free()

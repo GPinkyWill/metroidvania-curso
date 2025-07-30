@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 const DustEffectScene = preload("res://Effects/dust_effect.tscn")
+const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 
 @export var acceleration = 512
 @export var max_velocity = 128
@@ -86,6 +87,7 @@ func jump_check ():
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
 			jump()
+			Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
 	if !is_on_floor() and Input.is_action_just_released("jump") and velocity.y < -jump_force/2:
 		velocity.y = -jump_force/2
 
