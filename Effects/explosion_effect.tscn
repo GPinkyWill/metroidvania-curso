@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bp32rje7u2d1g"]
+
+[ext_resource type="Texture2D" uid="uid://qc25asgckfi8" path="res://Metroidvania Assets/effects/explosion_effect.png" id="1_xn6vs"]
+[ext_resource type="Script" path="res://Effects/effect.gd" id="2_5o5dh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbyuw"]
+atlas = ExtResource("1_xn6vs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qwvd"]
+atlas = ExtResource("1_xn6vs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru7dd"]
+atlas = ExtResource("1_xn6vs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhtms"]
+atlas = ExtResource("1_xn6vs")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmv3y"]
+atlas = ExtResource("1_xn6vs")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r8t2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbyuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qwvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru7dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhtms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmv3y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ExplosionEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_r8t2p")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_5o5dh")
