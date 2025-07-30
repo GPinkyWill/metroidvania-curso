@@ -23,6 +23,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	Utils.instantiate_scene_on_world(ExplosionEffectScene, global_position)
+	
 	queue_free()
 
 
