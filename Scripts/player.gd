@@ -17,6 +17,7 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 
 @onready var player_blaster: Node2D = $PlayerBlaster
 
+@onready var hurt_box: HurtBox = $HurtBox
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -31,6 +32,9 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1
 
+
+func _ready() -> void:
+	PlayerStats.no_health.connect(die)
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -112,10 +116,13 @@ func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
 
 
-
+func die():
+	camera_2d.reparent(get_tree().current_scene)
+	queue_free()
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
-	camera_2d.reparent(get_tree().current_scene)
 	Events.add_screen_shake.emit(2, 0.2)
-	queue_free()
-	
+	PlayerStats.health -= 1
+	hurt_box.is_invincible = true
+	await get_tree().create_timer(1.0).timeout
+	hurt_box.is_invincible = false
