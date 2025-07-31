@@ -10,8 +10,8 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 @export var gravity = 200
 @export var jump_force = 333
 @export var max_fall_velocity = 120
-@export var wall_slide_speed = 48
-@export var max_wall_slide_speed = 128
+@export var wall_slide_speed = 62
+@export var max_wall_slide_speed = 200
 
 
 
@@ -100,8 +100,8 @@ func wall_detatch(wall_direction, delta):
 		velocity.x = acceleration * delta * sign(input_axis)
 		state = move_state
 		
-	if !is_on_wall() or is_on_floor():
-		state = move_state
+	#if !is_on_wall() or is_on_floor():
+	#	state = move_state
 		
 func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
