@@ -1,7 +1,7 @@
 class_name HurtBox
 extends Area2D
 
-var is_invincible = false:
+var is_invincible : bool = false:
 	set(value):
 		is_invincible = value
 		disable.call_deferred(value)
