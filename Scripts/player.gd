@@ -30,6 +30,7 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 @export var jump_time_to_descent : float
 
 var air_jump = false
+var state = move_state
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
@@ -40,6 +41,9 @@ func _ready() -> void:
 	PlayerStats.no_health.connect(die)
 
 func _physics_process(delta: float) -> void:
+	state.call(delta)
+
+func move_state(delta):
 	apply_gravity(delta)
 	velocity.y += _get_gravity() * delta
 	#Movimentação direita e esquerda
@@ -67,6 +71,9 @@ func _physics_process(delta: float) -> void:
 	if just_left_edge:
 		coyote_jump_timer.start()
 		
+
+func wall_slide_state(delta):
+	pass
 
 func is_moving(input_axis):
 	return input_axis != 0
