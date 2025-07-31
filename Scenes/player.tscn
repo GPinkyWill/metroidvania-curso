@@ -172,6 +172,7 @@ collision_mask = 3
 floor_constant_speed = true
 floor_snap_length = 2.0
 script = ExtResource("1_1n3rx")
+jump_force = 333
 jump_height = 100.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.5

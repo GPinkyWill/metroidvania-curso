@@ -29,6 +29,8 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 @export var jump_time_to_peak : float
 @export var jump_time_to_descent : float
 
+var air_jump = false
+
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1
@@ -72,8 +74,6 @@ func is_moving(input_axis):
 func _get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
-func jump():
-	velocity.y = jump_velocity
 
 func apply_gravity(delta):
 	#Aplicação de gravidade para queda do personagem
@@ -87,15 +87,32 @@ func apply_acceleration(delta, input_axis):
 	
 func apply_friction(delta):
 	velocity.x = move_toward(velocity.x,0,friction * delta)
-		
+	
+	
+	
+func jump(force):
+	velocity.y = force
+	Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
+	
 func jump_check ():
+	if is_on_floor(): air_jump = true
+	
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
-			jump()
-			Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
-	if !is_on_floor() and Input.is_action_just_released("jump") and velocity.y < -jump_force/2:
-		velocity.y = -jump_force/2
+			jump(-jump_force)
+			
+	
 
+	if !is_on_floor():
+		if Input.is_action_just_released("jump") and velocity.y < -jump_force/2:
+			velocity.y = -jump_force/2
+			
+		if Input.is_action_just_pressed("jump") and air_jump:
+			jump(-jump_force * 0.75)
+			air_jump = false
+	
+	
+	
 func update_animations (input_axis):
 	sprite_2d.scale.x = sign(get_local_mouse_position().x)
 	if abs(sprite_2d.scale.x) != 1: sprite_2d.scale.x = 1
