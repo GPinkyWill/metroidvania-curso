@@ -12,7 +12,7 @@ const WallJumpEffectScene = preload("res://Effects/wall_jump_effect.tscn")
 @export var jump_force = 333
 @export var max_fall_velocity = 120
 @export var wall_slide_speed = 62
-@export var max_wall_slide_speed = 200
+@export var max_wall_slide_speed = 300
 
 
 
@@ -84,6 +84,7 @@ func wall_slide_state(delta):
 	var wall_normal = get_wall_normal()
 	animation_player.play("wall_slide")
 	sprite_2d.scale.x = sign(wall_normal.x)
+	velocity.y = clampf(velocity.y,-20, max_wall_slide_speed)
 	wall_jump_check(wall_normal.x)
 	apply_wall_slide_gravity(delta)
 	move_and_slide()
@@ -93,7 +94,6 @@ func wall_check():
 	if wall_slide_cd_timer.time_left > 0: return
 	if !is_on_floor() and is_on_wall():
 		state = wall_slide_state
-		velocity.y = 0
 		air_jump = false
 		wall_slide_cd_timer.start()
 		create_dust_effect()
