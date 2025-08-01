@@ -15,6 +15,7 @@ const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 
 
 
+@onready var wall_slide_cd_timer: Timer = $WallSlideCD_Timer
 @onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var drop_timer: Timer = $DropTimer
 @onready var camera_2d: Camera2D = $Camera2D
@@ -90,19 +91,22 @@ func wall_slide_state(delta):
 func wall_check():
 	if !is_on_floor() and is_on_wall():
 		state = wall_slide_state
+		velocity.y = 0
 		air_jump = false
+		wall_slide_cd_timer.start()
 
 func wall_detatch(wall_direction, delta):
-	
 	var input_axis = Input.get_axis("move_left","move_right")
 	
 	if is_on_wall() and input_axis == wall_direction:
 		velocity.x = acceleration * delta * sign(input_axis)
 		state = move_state
 		
-	#if !is_on_wall() or is_on_floor():
-	#	state = move_state
-		
+	if !is_on_wall() or is_on_floor():
+		state = move_state
+	
+	
+	
 func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
 		velocity.x = wall_axis * max_velocity
@@ -111,6 +115,7 @@ func wall_jump_check(wall_axis):
 		
 
 func apply_wall_slide_gravity(delta):
+	if wall_slide_cd_timer.time_left > 0: return
 	var slide_speed = wall_slide_speed
 	if Input.is_action_pressed("crouch"):
 		slide_speed = max_wall_slide_speed
