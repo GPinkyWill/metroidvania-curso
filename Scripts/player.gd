@@ -146,7 +146,8 @@ func apply_acceleration(delta, input_axis):
 		velocity.x = move_toward(velocity.x,input_axis * max_velocity,acceleration * delta)
 	
 func apply_friction(delta):
-	velocity.x = move_toward(velocity.x,0,friction * delta)
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x,0,friction * delta)
 	
 	
 	
