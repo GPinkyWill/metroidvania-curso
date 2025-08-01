@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmmw83s1vsed7"]
+
+[ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_vevfl"]
+[ext_resource type="Texture2D" uid="uid://wfmurobkodfy" path="res://Metroidvania Assets/enemies/enemy_bullet.png" id="2_rousk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjmok"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi2xm"]
+atlas = ExtResource("2_rousk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp6jv"]
+atlas = ExtResource("2_rousk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wfs83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi2xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp6jv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyBullet" instance=ExtResource("1_vevfl")]
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.5, 0.5)
+
+[node name="HitBox" parent="." index="1"]
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_bjmok")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_wfs83")
+autoplay = "default"
+frame_progress = 0.0405876
