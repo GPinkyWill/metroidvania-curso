@@ -89,6 +89,7 @@ func wall_slide_state(delta):
 	wall_detatch(wall_normal.x, delta)
 
 func wall_check():
+	if wall_slide_cd_timer.time_left > 0: return
 	if !is_on_floor() and is_on_wall():
 		state = wall_slide_state
 		velocity.y = 0
@@ -145,6 +146,7 @@ func apply_friction(delta):
 	
 	
 func jump(force):
+	wall_slide_cd_timer.start()
 	velocity.y = force
 	Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
 	
