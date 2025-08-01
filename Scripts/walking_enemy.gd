@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const EnemyDeathEffectScene = preload("res://Effects/enemy_death_effect.tscn")
+
 @export var speed = 30.0
 @export var turn_at_ledges = true
 
@@ -46,4 +48,6 @@ func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 
 
 func _on_stats_no_health() -> void:
+	var displacement = global_position - Vector2(0,8).rotated(rotation)
+	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, displacement)
 	queue_free()
