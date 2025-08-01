@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
+const WallJumpEffectScene = preload("res://Effects/wall_jump_effect.tscn")
 
 @export var acceleration = 512
 @export var max_velocity = 128
@@ -95,6 +96,7 @@ func wall_check():
 		velocity.y = 0
 		air_jump = false
 		wall_slide_cd_timer.start()
+		create_dust_effect()
 
 func wall_detatch(wall_direction, delta):
 	var input_axis = Input.get_axis("move_left","move_right")
@@ -112,7 +114,10 @@ func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
 		velocity.x = wall_axis * max_velocity
 		state = move_state
-		jump(-jump_force * 0.75)
+		jump(-jump_force * 0.75, false)
+		var wall_jump_effect_position = global_position + Vector2(wall_axis * 3.5, -2)
+		var wall_jump_effect = Utils.instantiate_scene_on_world(WallJumpEffectScene, wall_jump_effect_position)
+		wall_jump_effect.scale.x = wall_axis
 		
 
 func apply_wall_slide_gravity(delta):
@@ -145,10 +150,11 @@ func apply_friction(delta):
 	
 	
 	
-func jump(force):
+func jump(force, create_effect = true):
 	wall_slide_cd_timer.start()
 	velocity.y = force
-	Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
+	if create_effect:
+		Utils.instantiate_scene_on_world(JumpEffectScene,global_position)
 	
 func jump_check ():
 	if is_on_floor(): air_jump = true

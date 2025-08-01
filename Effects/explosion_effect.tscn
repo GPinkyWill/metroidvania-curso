@@ -47,6 +47,7 @@ animations = [{
 }]
 
 [node name="ExplosionEffect" type="AnimatedSprite2D"]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_r8t2p")
 autoplay = "default"
 frame = 4
