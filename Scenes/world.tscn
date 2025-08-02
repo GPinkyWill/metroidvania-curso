@@ -58,6 +58,12 @@ position = Vector2(344, 224)
 [node name="WalkingEnemy3" parent="Enemies" instance=ExtResource("7_nfuas")]
 position = Vector2(469, 95)
 
+[node name="WalkingEnemy6" parent="Enemies" instance=ExtResource("7_nfuas")]
+position = Vector2(952, 16)
+
+[node name="WalkingEnemy7" parent="Enemies" instance=ExtResource("7_nfuas")]
+position = Vector2(1216, -16)
+
 [node name="WalkingEnemy4" parent="Enemies" instance=ExtResource("7_nfuas")]
 position = Vector2(1055, 252)
 
@@ -69,7 +75,7 @@ position = Vector2(152, 80)
 rotation = -3.14159
 
 [node name="PlantEnemy2" parent="Enemies" instance=ExtResource("8_f0jub")]
-position = Vector2(896, 88)
+position = Vector2(896, 104)
 rotation = -1.57079
 
 [node name="PlantEnemy3" parent="Enemies" instance=ExtResource("8_f0jub")]
@@ -98,7 +104,7 @@ position = Vector2(824, 48)
 crawling_direction = -1
 
 [node name="FlyingEnemy" parent="Enemies" instance=ExtResource("10_aaujp")]
-position = Vector2(760, -88)
+position = Vector2(752, 8)
 
 [node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("10_aaujp")]
 position = Vector2(1032, 160)
