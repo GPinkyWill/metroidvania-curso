@@ -8,12 +8,13 @@ var pathfinding_next_position: Vector2
 
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var chase_timer: Timer = $"../ChaseTimer"
 
 
 func _physics_process(delta: float) -> void:
 	if !MainInstances.player is Node2D: return
 	target = MainInstances.player.center
-	
+	if  chase_timer.time_left == 0: return
 	if can_see_target(global_position):
 		pathfinding_next_position = target.global_position
 		waypoints.clear()
