@@ -249,5 +249,8 @@ libraries = {
 wait_time = 0.2
 one_shot = true
 
+[node name="Center" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]

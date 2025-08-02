@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://ccia5xehteh6o" path="res://Collisions/hit_box.tscn" id="3_0qvxw"]
 [ext_resource type="PackedScene" uid="uid://bx1yuncv32ar3" path="res://Stats/stats.tscn" id="5_dw3co"]
 
+[sub_resource type="Animation" id="Animation_irco4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_n7di7"]
 resource_name = "attack"
 length = 2.0
@@ -36,21 +51,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"fire_bullet"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_irco4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gf35m"]

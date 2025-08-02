@@ -29,6 +29,7 @@ const WallJumpEffectScene = preload("res://Effects/wall_jump_effect.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var coyote_jump_timer: Timer = $Coyote_Jump_Timer
+@onready var center: Marker2D = $Center
 
 
 @export var jump_height : float
@@ -47,6 +48,11 @@ var state = move_state
 func _ready() -> void:
 	PlayerStats.no_health.connect(die)
 
+#localização do player pros inimigos que precisarem dessa informação
+func _enter_tree() -> void:
+	MainInstances.player = self
+
+
 func _physics_process(delta: float) -> void:
 	state.call(delta)
 	
@@ -55,6 +61,9 @@ func _physics_process(delta: float) -> void:
 		player_blaster.fire_bullet()
 		fire_rate_timer.start()
 	
+
+func _exit_tree() -> void:
+	MainInstances.player = null
 
 func move_state(delta):
 	apply_gravity(delta)

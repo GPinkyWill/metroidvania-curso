@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cttvkp43gqu03"]
+
+[ext_resource type="Script" path="res://Scripts/way_point_pathfinding.gd" id="1_ksolb"]
+
+[node name="WayPointPathfinding" type="Node2D"]
+script = ExtResource("1_ksolb")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]

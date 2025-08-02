@@ -1,0 +1,122 @@
+[gd_scene load_steps=18 format=3 uid="uid://dda1qiofc6in8"]
+
+[ext_resource type="Texture2D" uid="uid://cnwc7loy21x1r" path="res://Metroidvania Assets/enemies/flying_enemy.png" id="1_h3pwr"]
+[ext_resource type="Script" path="res://Scripts/flying_enemy.gd" id="1_nlv4m"]
+[ext_resource type="PackedScene" uid="uid://r3ecbujqgo4p" path="res://Collisions/hurt_box.tscn" id="3_48tmn"]
+[ext_resource type="PackedScene" uid="uid://ccia5xehteh6o" path="res://Collisions/hit_box.tscn" id="4_0soap"]
+[ext_resource type="PackedScene" uid="uid://bx1yuncv32ar3" path="res://Stats/stats.tscn" id="5_1e8p4"]
+[ext_resource type="PackedScene" uid="uid://cttvkp43gqu03" path="res://Scenes/Enemies/way_point_pathfinding.tscn" id="6_a0dla"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvbkb"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_727yn"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekfxv"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(64, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb8xj"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(96, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjgyh"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(128, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2vfl"]
+atlas = ExtResource("1_h3pwr")
+region = Rect2(160, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_10gpk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvbkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_727yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekfxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb8xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjgyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2vfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6q24"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdnnu"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gkbr"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgyus"]
+radius = 114.039
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 11
+motion_mode = 1
+script = ExtResource("1_nlv4m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_10gpk")
+autoplay = "default"
+frame = 1
+frame_progress = 0.896111
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f6q24")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_48tmn")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_gdnnu")
+
+[node name="HitBox" parent="." instance=ExtResource("4_0soap")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_3gkbr")
+debug_color = Color(0.95525, 3.08037e-06, 0.544195, 0.42)
+
+[node name="Stats" parent="." instance=ExtResource("5_1e8p4")]
+
+[node name="WayPointPathfinding" parent="." instance=ExtResource("6_a0dla")]
+
+[node name="VisionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="VisionEnemy" type="CollisionShape2D" parent="VisionRange"]
+shape = SubResource("CircleShape2D_cgyus")
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Spawn_Marker" type="Marker2D" parent="."]
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="body_entered" from="VisionRange" to="." method="_on_vision_range_body_entered"]
+[connection signal="body_exited" from="VisionRange" to="." method="_on_vision_range_body_exited"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
