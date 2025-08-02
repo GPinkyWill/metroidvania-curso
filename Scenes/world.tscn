@@ -100,12 +100,6 @@ crawling_direction = -1
 [node name="FlyingEnemy" parent="Enemies" instance=ExtResource("10_aaujp")]
 position = Vector2(760, -88)
 
-[node name="FlyingEnemy5" parent="Enemies" instance=ExtResource("10_aaujp")]
-position = Vector2(80, 136)
-
-[node name="FlyingEnemy6" parent="Enemies" instance=ExtResource("10_aaujp")]
-position = Vector2(96, 136)
-
 [node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("10_aaujp")]
 position = Vector2(1032, 160)
 
