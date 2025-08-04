@@ -1,24 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://tnmvni37hshe"]
+[gd_scene load_steps=6 format=3 uid="uid://tnmvni37hshe"]
 
 [ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_u3ttn"]
 [ext_resource type="Texture2D" uid="uid://dwgc5rmc5w17n" path="res://Metroidvania Assets/player/player_missile.png" id="2_sa0b8"]
+[ext_resource type="Texture2D" uid="uid://cpo1vistt6fsk" path="res://Metroidvania Assets/effects/particle_effect.png" id="3_ofiqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7d31"]
 size = Vector2(14, 4)
 
+[sub_resource type="Curve" id="Curve_3kv84"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.307692), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Missile" instance=ExtResource("1_u3ttn")]
 speed = 150
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_sa0b8")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
 position = Vector2(-0.499999, 0)
 scale = Vector2(0.75, 0.3)
 
-[node name="HitBox" parent="." index="1"]
+[node name="HitBox" parent="." index="2"]
 collision_mask = 35
 damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_k7d31")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_sa0b8")
+[node name="Flames" type="CPUParticles2D" parent="." index="3"]
+position = Vector2(-7, 0)
+amount = 6
+lifetime = 0.2
+preprocess = 0.2
+texture = ExtResource("3_ofiqa")
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = 500.0
+angular_velocity_max = 1000.0
+scale_amount_curve = SubResource("Curve_3kv84")
