@@ -88,13 +88,15 @@ func _on_stats_no_health() -> void:
 
 
 func _on_vision_range_body_entered(body: Node2D) -> void:
+	way_point_pathfinding.can_see_target(global_position)
 	if body != MainInstances.player: return
 	if !way_point_pathfinding.can_see_target: return
 	can_chase = true
 
 func _on_vision_range_body_exited(body: Node2D) -> void:
 	if !body == MainInstances.player: return
-	chase_timer.start()
+	if stats.health > 0:
+		chase_timer.start()
 
 
 func _on_chase_timer_timeout() -> void:
