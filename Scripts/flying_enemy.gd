@@ -20,18 +20,18 @@ var time_to_go_back_to_spawn = false
 var spawn_marker : Vector2
 
 var can_chase = false
-var state = fly_around
+var state
 var direction = 1
 
 func _ready() -> void:
 	spawn_marker = global_position
+	state = fly_around
 
 func _physics_process(delta: float) -> void:
 	
 	state.call(delta)
 	check_chase(delta)
 	move_and_slide()
-	
 
 func move_toward_position(target_position, delta):
 	var direction = global_position.direction_to(target_position)
@@ -49,7 +49,6 @@ func chase_state(delta):
 
 func fly_around(delta):
 	var current_distance = abs(spawn_marker.distance_to(global_position))
-	
 	if current_distance >= distance_to_fly:
 		direction *= -1
 	velocity.y = 0
@@ -88,10 +87,11 @@ func _on_stats_no_health() -> void:
 
 
 func _on_vision_range_body_entered(body: Node2D) -> void:
-	way_point_pathfinding.can_see_target(global_position)
 	if body != MainInstances.player: return
 	if !way_point_pathfinding.can_see_target: return
+	way_point_pathfinding.can_see_target(global_position)
 	can_chase = true
+	chase_timer.start()
 
 func _on_vision_range_body_exited(body: Node2D) -> void:
 	if !body == MainInstances.player: return
@@ -100,10 +100,14 @@ func _on_vision_range_body_exited(body: Node2D) -> void:
 
 
 func _on_chase_timer_timeout() -> void:
-	can_chase = false
+	if way_point_pathfinding.can_see_target: 
+		chase_timer.start()
+	else:
+		can_chase = false
 
 
 func _on_back_to_spawn_timer_timeout() -> void:
+	if can_chase: return
 	Utils.instantiate_scene_on_world(EnemyDeathEffect, global_position)
 	state = fly_around
 	time_to_go_back_to_spawn = false

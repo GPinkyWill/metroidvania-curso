@@ -5,6 +5,7 @@ const DustEffectScene = preload("res://Effects/dust_effect.tscn")
 const JumpEffectScene = preload("res://Effects/jump_effect.tscn")
 const WallJumpEffectScene = preload("res://Effects/wall_jump_effect.tscn")
 
+
 @export var acceleration = 512
 @export var max_velocity = 128
 @export var friction = 350
@@ -59,6 +60,10 @@ func _physics_process(delta: float) -> void:
 	#Checando se deu tiro, independente de qual state está sendo utilizado no momento
 	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
 		player_blaster.fire_bullet()
+		fire_rate_timer.start()
+	
+	if Input.is_action_pressed("fire_missile") and fire_rate_timer.time_left == 0:
+		player_blaster.fire_missile()
 		fire_rate_timer.start()
 	
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnmvni37hshe"]
+
+[ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_u3ttn"]
+[ext_resource type="Texture2D" uid="uid://dwgc5rmc5w17n" path="res://Metroidvania Assets/player/player_missile.png" id="2_sa0b8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7d31"]
+size = Vector2(14, 4)
+
+[node name="Missile" instance=ExtResource("1_u3ttn")]
+speed = 150
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(-0.499999, 0)
+scale = Vector2(0.75, 0.3)
+
+[node name="HitBox" parent="." index="1"]
+collision_mask = 35
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_k7d31")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_sa0b8")
