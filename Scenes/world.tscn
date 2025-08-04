@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr116cwohj63l"]
+[gd_scene load_steps=13 format=3 uid="uid://dr116cwohj63l"]
 
 [ext_resource type="PackedScene" uid="uid://3th3a56n1xr0" path="res://Scenes/player.tscn" id="1_46m7q"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_bxnfi"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cqvldi1qs36a2" path="res://Scenes/UI/health_meter.tscn" id="8_l6hk2"]
 [ext_resource type="PackedScene" uid="uid://bkjeu36rn5q01" path="res://Scenes/Enemies/crawlling_enemy.tscn" id="9_mre6y"]
 [ext_resource type="PackedScene" uid="uid://dda1qiofc6in8" path="res://Scenes/Enemies/flying_enemy.tscn" id="10_aaujp"]
+[ext_resource type="PackedScene" uid="uid://dchlvney2lkkg" path="res://Scenes/UI/Menus/pause_menu.tscn" id="12_k0p8q"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_bxnfi")
@@ -122,3 +123,6 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 4.0
 offset_bottom = 4.0
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("12_k0p8q")]
+visible = false

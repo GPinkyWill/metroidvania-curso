@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://nykdtv3xbfa4"]
+
+[ext_resource type="Texture2D" uid="uid://djnaucufii2sh" path="res://Metroidvania Assets/ui/button_stylebox.png" id="1_hp23h"]
+
+[resource]
+texture = ExtResource("1_hp23h")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
