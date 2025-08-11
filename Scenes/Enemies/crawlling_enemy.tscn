@@ -68,7 +68,7 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_wamax")
 animation = &"fall"
 autoplay = "crawl"
-frame_progress = 0.996593
+frame_progress = 0.797016
 
 [node name="HurtBox" parent="." instance=ExtResource("2_xcrd7")]
 collision_layer = 32
