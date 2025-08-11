@@ -53,5 +53,5 @@ func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 
 func _on_stats_no_health() -> void:
 	var displacement = global_position - Vector2(0,8).rotated(rotation)
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, displacement)
+	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, displacement)
 	queue_free()

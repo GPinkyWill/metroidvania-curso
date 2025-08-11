@@ -87,7 +87,7 @@ func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 
 
 func _on_stats_no_health() -> void:
-	Utils.instantiate_scene_on_world(EnemyDeathEffect, global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffect, global_position)
 	queue_free()
 
 
@@ -114,7 +114,7 @@ func _on_chase_timer_timeout() -> void:
 
 func _on_back_to_spawn_timer_timeout() -> void:
 	if can_chase: return
-	Utils.instantiate_scene_on_world(EnemyDeathEffect, global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffect, global_position)
 	state = fly_around
 	time_to_go_back_to_spawn = false
 	global_position = spawn_marker
