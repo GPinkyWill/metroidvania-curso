@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://tnmvni37hshe"]
+[gd_scene load_steps=7 format=3 uid="uid://tnmvni37hshe"]
 
 [ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_u3ttn"]
+[ext_resource type="Script" path="res://Scenes/missile.gd" id="2_1qai1"]
 [ext_resource type="Texture2D" uid="uid://dwgc5rmc5w17n" path="res://Metroidvania Assets/player/player_missile.png" id="2_sa0b8"]
 [ext_resource type="Texture2D" uid="uid://cpo1vistt6fsk" path="res://Metroidvania Assets/effects/particle_effect.png" id="3_ofiqa"]
 
@@ -12,6 +13,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.307692), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Missile" instance=ExtResource("1_u3ttn")]
+script = ExtResource("2_1qai1")
 speed = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]

@@ -23,12 +23,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		floor_cast.rotation_degrees = -max_speed * crawling_direction * delta
 		if floor_cast.is_colliding():
+			
 			global_position = floor_cast.get_collision_point()
 			var floor_normal = floor_cast.get_collision_normal()
 			rotation = floor_normal.rotated(deg_to_rad(90)).angle()
+			
+		
 		else:
 			rotation_degrees += crawling_direction
-
+			
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 	stats.health -= damage

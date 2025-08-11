@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg15m2v74vjhu"]
+
+[ext_resource type="Texture2D" uid="uid://myf1klqnvu2x" path="res://Metroidvania Assets/world/brick.png" id="1_1jwlp"]
+[ext_resource type="Script" path="res://Scripts/brick.gd" id="1_lxpat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpo0u"]
+size = Vector2(16, 16)
+
+[node name="Brick" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_lxpat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_1jwlp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_mpo0u")

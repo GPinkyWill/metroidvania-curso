@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr116cwohj63l"]
+[gd_scene load_steps=15 format=3 uid="uid://dr116cwohj63l"]
 
 [ext_resource type="PackedScene" uid="uid://3th3a56n1xr0" path="res://Scenes/player.tscn" id="1_46m7q"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_bxnfi"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cqvldi1qs36a2" path="res://Scenes/UI/health_meter.tscn" id="8_l6hk2"]
 [ext_resource type="PackedScene" uid="uid://bkjeu36rn5q01" path="res://Scenes/Enemies/crawlling_enemy.tscn" id="9_mre6y"]
 [ext_resource type="PackedScene" uid="uid://dda1qiofc6in8" path="res://Scenes/Enemies/flying_enemy.tscn" id="10_aaujp"]
+[ext_resource type="PackedScene" uid="uid://cg15m2v74vjhu" path="res://Scenes/brick.tscn" id="11_igi5j"]
 [ext_resource type="PackedScene" uid="uid://dchlvney2lkkg" path="res://Scenes/UI/Menus/pause_menu.tscn" id="12_k0p8q"]
 [ext_resource type="PackedScene" uid="uid://cxjarle8307e4" path="res://Scenes/UI/missile_ui.tscn" id="13_wsh4o"]
 
@@ -93,7 +94,7 @@ position = Vector2(1472, 208)
 rotation = -1.57079
 
 [node name="CrawllingEnemy" parent="Enemies" instance=ExtResource("9_mre6y")]
-position = Vector2(96, 48)
+position = Vector2(-40, 48)
 
 [node name="CrawllingEnemy5" parent="Enemies" instance=ExtResource("9_mre6y")]
 position = Vector2(184, 48)
@@ -116,6 +117,17 @@ position = Vector2(1008, 200)
 
 [node name="FlyingEnemy4" parent="Enemies" instance=ExtResource("10_aaujp")]
 position = Vector2(1240, 232)
+
+[node name="Brick" type="Node" parent="."]
+
+[node name="Brick" parent="Brick" instance=ExtResource("11_igi5j")]
+position = Vector2(0, 48)
+
+[node name="Brick2" parent="Brick" instance=ExtResource("11_igi5j")]
+position = Vector2(-16, 48)
+
+[node name="Brick3" parent="Brick" instance=ExtResource("11_igi5j")]
+position = Vector2(-32, 48)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
