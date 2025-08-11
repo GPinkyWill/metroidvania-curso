@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp77lo0uquqfl"]
+
+[ext_resource type="PackedScene" uid="uid://i3mti5tm7p4r" path="res://Scenes/PowerUps/power_up.tscn" id="1_eyg10"]
+[ext_resource type="Script" path="res://Scenes/PowerUps/missile_power_up.gd" id="2_8nwjr"]
+[ext_resource type="Texture2D" uid="uid://dwgc5rmc5w17n" path="res://Metroidvania Assets/player/player_missile.png" id="2_pgkbk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5bu7"]
+size = Vector2(6, 15)
+
+[node name="MissilePowerUp" instance=ExtResource("1_eyg10")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_8nwjr")
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -1.5708
+texture = ExtResource("2_pgkbk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_j5bu7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
