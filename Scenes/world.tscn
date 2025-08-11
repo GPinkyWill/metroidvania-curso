@@ -95,7 +95,7 @@ position = Vector2(1472, 208)
 rotation = -1.57079
 
 [node name="CrawllingEnemy" parent="Enemies" instance=ExtResource("9_mre6y")]
-position = Vector2(-40, 48)
+position = Vector2(-98, -47)
 
 [node name="CrawllingEnemy5" parent="Enemies" instance=ExtResource("9_mre6y")]
 position = Vector2(184, 48)
@@ -129,6 +129,9 @@ position = Vector2(-16, 48)
 
 [node name="Brick3" parent="Brick" instance=ExtResource("11_igi5j")]
 position = Vector2(-32, 48)
+
+[node name="Brick4" parent="Brick" instance=ExtResource("11_igi5j")]
+position = Vector2(-105, -45)
 
 [node name="PowerUps" type="Node" parent="."]
 
