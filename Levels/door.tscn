@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://bvyhru2fgcw0t"]
+[gd_scene load_steps=3 format=3 uid="uid://bvyhru2fgcw0t"]
 
-[node name="Door" type="Area2D"]
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_650mw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igotc"]
+size = Vector2(16, 32)
+
+[node name="Door" type="Area2D" groups=["doors"]]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_650mw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_igotc")
+
+[node name="RightCast" type="RayCast2D" parent="."]
+position = Vector2(0, -16)
+target_position = Vector2(24, 0)
+
+[node name="LeftCast" type="RayCast2D" parent="."]
+position = Vector2(0, -16)
+target_position = Vector2(-24, 0)
