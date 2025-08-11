@@ -1,16 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxjarle8307e4"]
+[gd_scene load_steps=3 format=3 uid="uid://cxjarle8307e4"]
 
+[ext_resource type="Script" path="res://Scripts/missile_ui.gd" id="1_3fv1r"]
 [ext_resource type="Texture2D" uid="uid://deufm2dmjpf25" path="res://Metroidvania Assets/ui/player_missile_icon.png" id="1_cyreu"]
 
 [node name="MissileUI" type="HBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -288.0
-offset_bottom = -170.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 15.0
+offset_bottom = 10.0
 theme_override_constants/separation = 2
+script = ExtResource("1_3fv1r")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 2
