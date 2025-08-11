@@ -7,14 +7,18 @@ const EnemyDeathEffectScene = preload("res://Effects/enemy_death_effect.tscn")
 
 
 var gravity = 200.0
-var direction = 1.0
+var direction = 1
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var floor_cast: RayCast2D = $FloorCast
 @onready var stats: Node = $Stats
 
 
-
+func _ready() -> void:
+	direction = randi_range(-1,1)
+	if direction == 0:
+		while direction == 0:
+			direction = randi_range(-1,1)
 
 
 func _physics_process(delta: float) -> void:

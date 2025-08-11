@@ -26,6 +26,12 @@ var direction = 1
 func _ready() -> void:
 	spawn_marker = global_position
 	state = fly_around
+	speed = randf_range(15,25)
+	direction = randi_range(-1,1)
+	if direction == 0:
+		while direction == 0:
+			direction = randi_range(-1,1)
+
 
 func _physics_process(delta: float) -> void:
 	
