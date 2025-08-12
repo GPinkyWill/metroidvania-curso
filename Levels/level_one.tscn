@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bur25uy75qt41"]
+[gd_scene load_steps=13 format=3 uid="uid://bur25uy75qt41"]
 
 [ext_resource type="PackedScene" uid="uid://dqnoofxhcp821" path="res://Scenes/world_tile_map.tscn" id="1_sh511"]
 [ext_resource type="PackedScene" uid="uid://ct3obyojy1mmc" path="res://Scenes/moving_platform.tscn" id="2_ku1re"]
-[ext_resource type="Curve2D" uid="uid://bej3k3ubp8hn8" path="res://Scenes/Paths/Both_Side_Path.tres" id="3_oy1ex"]
 [ext_resource type="Curve2D" uid="uid://ctjnqv35scmib" path="res://Scenes/Paths/Both_Up_Down_Path.tres" id="4_j0ddb"]
 [ext_resource type="PackedScene" uid="uid://bdaor2bennd6u" path="res://Scenes/Enemies/walking_enemy.tscn" id="5_0yij2"]
 [ext_resource type="PackedScene" uid="uid://bxt47kb4egfhs" path="res://Scenes/Enemies/plant_enemy.tscn" id="6_1kl8e"]
@@ -21,28 +20,8 @@ layer_0/tile_data = PackedInt32Array(589827, 65536, 0, 327683, 0, 2, 262147, 393
 
 [node name="Plataforms" type="Node" parent="."]
 
-[node name="MovingPlatform" parent="Plataforms" instance=ExtResource("2_ku1re")]
-position = Vector2(344, 66)
-current_path = ExtResource("3_oy1ex")
-
 [node name="MovingPlatform2" parent="Plataforms" instance=ExtResource("2_ku1re")]
 position = Vector2(320, 161)
-current_path = ExtResource("4_j0ddb")
-
-[node name="MovingPlatform3" parent="Plataforms" instance=ExtResource("2_ku1re")]
-position = Vector2(751, 39)
-generate_random_speed = true
-
-[node name="MovingPlatform4" parent="Plataforms" instance=ExtResource("2_ku1re")]
-position = Vector2(1208, 86)
-current_path = ExtResource("4_j0ddb")
-
-[node name="MovingPlatform6" parent="Plataforms" instance=ExtResource("2_ku1re")]
-position = Vector2(645, 85)
-current_path = ExtResource("4_j0ddb")
-
-[node name="MovingPlatform5" parent="Plataforms" instance=ExtResource("2_ku1re")]
-position = Vector2(1394, 199)
 current_path = ExtResource("4_j0ddb")
 
 [node name="Enemies" type="Node" parent="."]
@@ -105,7 +84,7 @@ position = Vector2(824, 48)
 crawling_direction = -1
 
 [node name="FlyingEnemy" parent="Enemies" instance=ExtResource("8_okute")]
-position = Vector2(752, 8)
+position = Vector2(760, 8)
 
 [node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("8_okute")]
 position = Vector2(1040, 185)
