@@ -12,6 +12,6 @@ func instantiate_scene_on_level(scene : PackedScene, position : Vector2):
 	if !world is World: return
 	var level = world.level
 	var instance = scene.instantiate()
-	level.add_child(instance)
+	level.add_child.call_deferred(instance)
 	instance.global_position = position
 	return instance

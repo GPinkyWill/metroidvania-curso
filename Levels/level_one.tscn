@@ -31,6 +31,7 @@ current_path = ExtResource("4_j0ddb")
 
 [node name="MovingPlatform3" parent="Plataforms" instance=ExtResource("2_ku1re")]
 position = Vector2(751, 39)
+generate_random_speed = true
 
 [node name="MovingPlatform4" parent="Plataforms" instance=ExtResource("2_ku1re")]
 position = Vector2(1208, 86)
@@ -139,6 +140,7 @@ new_level_path = "res://Levels/level_two.tscn"
 connection = ExtResource("12_hfk3j")
 
 [node name="CameraLimit" parent="." instance=ExtResource("13_uhw08")]
+visible = false
 offset_left = -248.0
 offset_top = -112.0
 offset_right = 1560.0

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc5ogjk7ayp88"]
+
+[ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_hum36"]
+[ext_resource type="Texture2D" uid="uid://byq57wfd0y5hf" path="res://Metroidvania Assets/enemies/boss_stinger.png" id="2_q0hpt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leyik"]
+size = Vector2(22, 2)
+
+[node name="Stinger" instance=ExtResource("1_hum36")]
+speed = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+rotation = -0.785397
+texture = ExtResource("2_q0hpt")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
+scale = Vector2(1, 0.2)
+
+[node name="HitBox" parent="." index="2"]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_leyik")

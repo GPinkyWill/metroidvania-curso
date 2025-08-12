@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://63n6ko2ocdcu"]
+[gd_scene load_steps=14 format=3 uid="uid://63n6ko2ocdcu"]
 
 [ext_resource type="Script" path="res://Scripts/boss_enemy.gd" id="1_e13ei"]
 [ext_resource type="Texture2D" uid="uid://11fefdnimhrr" path="res://Metroidvania Assets/enemies/boss_enemy_body.png" id="2_jydve"]
 [ext_resource type="Texture2D" uid="uid://clfmkn4yh1wi0" path="res://Metroidvania Assets/enemies/boss_enemy_wing.png" id="3_u3adx"]
 [ext_resource type="Texture2D" uid="uid://c3826pb5f6jeo" path="res://Metroidvania Assets/enemies/boss_enemy_head.png" id="4_xkltp"]
 [ext_resource type="Texture2D" uid="uid://bjyubprlq51y7" path="res://Metroidvania Assets/enemies/boss_enemy_leg.png" id="5_qvfwf"]
+[ext_resource type="PackedScene" uid="uid://bx1yuncv32ar3" path="res://Stats/stats.tscn" id="6_vid3d"]
+[ext_resource type="PackedScene" uid="uid://r3ecbujqgo4p" path="res://Collisions/hurt_box.tscn" id="7_u5tom"]
+[ext_resource type="PackedScene" uid="uid://ccia5xehteh6o" path="res://Collisions/hit_box.tscn" id="8_yso7v"]
 
 [sub_resource type="Animation" id="Animation_e8kqh"]
 resource_name = "fly"
@@ -192,8 +195,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_u4atf"]
 radius = 22.0227
 
-[node name="BossEnemy" type="CharacterBody2D"]
-motion_mode = 1
+[sub_resource type="CircleShape2D" id="CircleShape2D_ao3qy"]
+radius = 17.0
+
+[node name="BossEnemy" type="Node2D"]
 script = ExtResource("1_e13ei")
 
 [node name="Body" type="Sprite2D" parent="."]
@@ -250,6 +255,42 @@ libraries = {
 }
 autoplay = "fly"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Stats" parent="." instance=ExtResource("6_vid3d")]
+max_health = 6.0
+
+[node name="HurtBox" parent="." instance=ExtResource("7_u5tom")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_u4atf")
+
+[node name="HitBox" parent="." instance=ExtResource("8_yso7v")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_ao3qy")
+debug_color = Color(0.952882, 2.79158e-06, 0.556394, 0.42)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(-8, 19, -8, 21, -3, 27, -1, 34, 1, 34, 3, 27, 8, 21, 8, 19)
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="StingerPivot" type="Marker2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="Muzzle" type="Marker2D" parent="StingerPivot"]
+position = Vector2(16, 0)
+
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
