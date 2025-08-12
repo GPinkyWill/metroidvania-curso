@@ -10,10 +10,6 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_bxnfi")
 
-[node name="Player" parent="." instance=ExtResource("1_46m7q")]
-position = Vector2(1542, 338)
-safe_margin = 0.1
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HealthMeter" parent="UI" instance=ExtResource("8_l6hk2")]
@@ -30,5 +26,9 @@ offset_left = 4.0
 offset_top = 20.0
 offset_right = 19.0
 offset_bottom = 30.0
+
+[node name="Player" parent="." instance=ExtResource("1_46m7q")]
+position = Vector2(-61, -9)
+safe_margin = 0.1
 
 [node name="Level_One" parent="." instance=ExtResource("6_x46xn")]

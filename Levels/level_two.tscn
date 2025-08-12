@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdqo7i76dnh1m"]
+[gd_scene load_steps=15 format=3 uid="uid://cdqo7i76dnh1m"]
 
 [ext_resource type="PackedScene" uid="uid://dqnoofxhcp821" path="res://Scenes/world_tile_map.tscn" id="1_tnerq"]
 [ext_resource type="PackedScene" uid="uid://cg15m2v74vjhu" path="res://Scenes/brick.tscn" id="2_8y346"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvyhru2fgcw0t" path="res://Levels/door.tscn" id="11_5uogw"]
 [ext_resource type="Resource" uid="uid://bt6j2kol0peqg" path="res://Scenes/Paths/one_two.tres" id="12_bk3nr"]
 [ext_resource type="Resource" uid="uid://dyocn76adu5j1" path="res://Scenes/Paths/two_three.tres" id="13_yu4px"]
+[ext_resource type="PackedScene" uid="uid://bgca6pnxmlkvn" path="res://Scenes/UI/camera_limit.tscn" id="14_6gaup"]
 
 [node name="Level_Two" type="Node2D"]
 
@@ -177,3 +178,9 @@ connection = ExtResource("12_bk3nr")
 position = Vector2(2056, -64)
 new_level_path = "res://Levels/level_three.tscn"
 connection = ExtResource("13_yu4px")
+
+[node name="CameraLimit" parent="." instance=ExtResource("14_6gaup")]
+offset_left = -728.0
+offset_top = -336.0
+offset_right = 2040.0
+offset_bottom = 328.0
