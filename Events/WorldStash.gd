@@ -5,4 +5,14 @@ var data = {}
 
 func get_id(node):
 	var world = get_tree().current_scene
-	return world.name + "_" + node.name + "_" + str(node.global_position)
+	var level = world.level
+	return level.name + "_" + node.name + "_" + str(node.global_position)
+
+func stash(id, key, value):
+	data[id] = {}
+	data[id][key] = value
+
+func retrieve(id, key):
+	if !data.has(id): return
+	if !data[id].has(key): return
+	return data[id][key]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://63n6ko2ocdcu"]
+
+[ext_resource type="Texture2D" uid="uid://fes780niyofu" path="res://Metroidvania Assets/enemies/boss_enemy.png" id="1_41prg"]
+[ext_resource type="Texture2D" uid="uid://11fefdnimhrr" path="res://Metroidvania Assets/enemies/boss_enemy_body.png" id="2_jydve"]
+[ext_resource type="Texture2D" uid="uid://clfmkn4yh1wi0" path="res://Metroidvania Assets/enemies/boss_enemy_wing.png" id="3_u3adx"]
+[ext_resource type="Texture2D" uid="uid://c3826pb5f6jeo" path="res://Metroidvania Assets/enemies/boss_enemy_head.png" id="4_xkltp"]
+[ext_resource type="Texture2D" uid="uid://bjyubprlq51y7" path="res://Metroidvania Assets/enemies/boss_enemy_leg.png" id="5_qvfwf"]
+
+[node name="BossEnemy" type="CharacterBody2D"]
+
+[node name="Trace" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.454902)
+texture = ExtResource("1_41prg")
+metadata/_edit_lock_ = true
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("2_jydve")
+offset = Vector2(-0.5, 0)
+
+[node name="LeftWing" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(-8, -20)
+texture = ExtResource("3_u3adx")
+offset = Vector2(-21, -4)
+
+[node name="RightWing" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(8, -20)
+texture = ExtResource("3_u3adx")
+offset = Vector2(21, -4)
+flip_h = true
+
+[node name="Head" type="Sprite2D" parent="Body"]
+position = Vector2(0, -7)
+texture = ExtResource("4_xkltp")
+
+[node name="UpperLeftLeg" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(-13, -11)
+texture = ExtResource("5_qvfwf")
+offset = Vector2(-8, 8)
+
+[node name="LowerLeftLeg" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(-10, -2)
+rotation = -0.523599
+texture = ExtResource("5_qvfwf")
+offset = Vector2(-8, 8)
+
+[node name="UpperRightLeg" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(13, -11)
+texture = ExtResource("5_qvfwf")
+offset = Vector2(8, 8)
+flip_h = true
+
+[node name="LowerRightLeg" type="Sprite2D" parent="Body"]
+show_behind_parent = true
+position = Vector2(10, -2)
+rotation = 0.523599
+texture = ExtResource("5_qvfwf")
+offset = Vector2(8, 8)
+flip_h = true
