@@ -1,32 +1,217 @@
-[gd_scene load_steps=6 format=3 uid="uid://63n6ko2ocdcu"]
+[gd_scene load_steps=10 format=3 uid="uid://63n6ko2ocdcu"]
 
-[ext_resource type="Texture2D" uid="uid://fes780niyofu" path="res://Metroidvania Assets/enemies/boss_enemy.png" id="1_41prg"]
+[ext_resource type="Script" path="res://Scripts/boss_enemy.gd" id="1_e13ei"]
 [ext_resource type="Texture2D" uid="uid://11fefdnimhrr" path="res://Metroidvania Assets/enemies/boss_enemy_body.png" id="2_jydve"]
 [ext_resource type="Texture2D" uid="uid://clfmkn4yh1wi0" path="res://Metroidvania Assets/enemies/boss_enemy_wing.png" id="3_u3adx"]
 [ext_resource type="Texture2D" uid="uid://c3826pb5f6jeo" path="res://Metroidvania Assets/enemies/boss_enemy_head.png" id="4_xkltp"]
 [ext_resource type="Texture2D" uid="uid://bjyubprlq51y7" path="res://Metroidvania Assets/enemies/boss_enemy_leg.png" id="5_qvfwf"]
 
-[node name="BossEnemy" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_e8kqh"]
+resource_name = "fly"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 13), Vector2(0, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/RightWing:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.785398, 1.309]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/LeftWing:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.785398, -1.309]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/UpperLeftLeg:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.523599]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/LowerLeftLeg:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.523599, -0.261799]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/UpperRightLeg:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.523599]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/LowerRightLeg:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.523599, 0.261799]
+}
 
-[node name="Trace" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.454902)
-texture = ExtResource("1_41prg")
-metadata/_edit_lock_ = true
+[sub_resource type="Animation" id="Animation_crwd1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/RightWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/LeftWing:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/UpperLeftLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/LowerLeftLeg:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.523599]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/UpperRightLeg:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/LowerRightLeg:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.523599]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1aeni"]
+_data = {
+"RESET": SubResource("Animation_crwd1"),
+"fly": SubResource("Animation_e8kqh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4atf"]
+radius = 22.0227
+
+[node name="BossEnemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_e13ei")
 
 [node name="Body" type="Sprite2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(0, 13)
 texture = ExtResource("2_jydve")
 offset = Vector2(-0.5, 0)
 
 [node name="LeftWing" type="Sprite2D" parent="Body"]
 show_behind_parent = true
 position = Vector2(-8, -20)
+rotation = 0.785398
 texture = ExtResource("3_u3adx")
 offset = Vector2(-21, -4)
 
 [node name="RightWing" type="Sprite2D" parent="Body"]
 show_behind_parent = true
 position = Vector2(8, -20)
+rotation = -0.785398
 texture = ExtResource("3_u3adx")
 offset = Vector2(21, -4)
 flip_h = true
@@ -36,29 +221,35 @@ position = Vector2(0, -7)
 texture = ExtResource("4_xkltp")
 
 [node name="UpperLeftLeg" type="Sprite2D" parent="Body"]
-show_behind_parent = true
 position = Vector2(-13, -11)
 texture = ExtResource("5_qvfwf")
 offset = Vector2(-8, 8)
 
 [node name="LowerLeftLeg" type="Sprite2D" parent="Body"]
-show_behind_parent = true
 position = Vector2(-10, -2)
 rotation = -0.523599
 texture = ExtResource("5_qvfwf")
 offset = Vector2(-8, 8)
 
 [node name="UpperRightLeg" type="Sprite2D" parent="Body"]
-show_behind_parent = true
 position = Vector2(13, -11)
 texture = ExtResource("5_qvfwf")
 offset = Vector2(8, 8)
 flip_h = true
 
 [node name="LowerRightLeg" type="Sprite2D" parent="Body"]
-show_behind_parent = true
 position = Vector2(10, -2)
 rotation = 0.523599
 texture = ExtResource("5_qvfwf")
 offset = Vector2(8, 8)
 flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1aeni")
+}
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_u4atf")
