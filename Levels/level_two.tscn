@@ -183,6 +183,9 @@ position = Vector2(32, 80)
 [node name="SaveStation2" parent="SaveDoor" instance=ExtResource("15_sqlai")]
 position = Vector2(776, 224)
 
+[node name="SaveStation3" parent="SaveDoor" instance=ExtResource("15_sqlai")]
+position = Vector2(1928, -64)
+
 [node name="CameraLimit" parent="." instance=ExtResource("14_6gaup")]
 visible = false
 offset_left = -728.0
