@@ -7,7 +7,7 @@ const ExplosionEffectScene = preload("res://Effects/explosion_effect.tscn")
 var velocity = Vector2.ZERO
 
 func _ready() -> void:
-	Sound.play("bullet",randf_range(0.6, 1.2))
+	Sound.play("bullet",randf_range(1.2, 2), -5)
 
 func update_velocity():
 	velocity.x = speed

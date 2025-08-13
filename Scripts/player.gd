@@ -129,7 +129,7 @@ func wall_detatch(wall_direction, delta):
 	
 func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
-		Sound.play("jump",randf_range(0.8, 1.1), -5)
+		Sound.play("jump",randf_range(0.6, 1.1), -5)
 		velocity.x = wall_axis * max_velocity
 		state = move_state
 		jump(-jump_force * 0.75, false)
@@ -170,7 +170,7 @@ func apply_friction(delta):
 	
 	
 func jump(force, create_effect = true):
-	Sound.play("jump",randf_range(0.8, 1.1), -5)
+	Sound.play("jump",randf_range(0.6, 1.1), -5)
 	wall_slide_cd_timer.start()
 	velocity.y = force
 	if create_effect:
@@ -211,7 +211,7 @@ func update_animations (input_axis):
 
 func create_dust_effect():
 	Utils.instantiate_scene_on_level(DustEffectScene,global_position)
-	Sound.play("step",randf_range(0.8, 1.2), -5)
+	Sound.play("step",randf_range(0.7, 1.2), -10)
 	
 
 
@@ -224,7 +224,7 @@ func die():
 	queue_free()
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
-	Sound.play("hurt")
+	Sound.play("hurt", 1.0, -5.0)
 	Events.add_screen_shake.emit(2, 0.2)
 	PlayerStats.health -= 1
 	hurt_box.is_invincible = true
