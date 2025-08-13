@@ -53,3 +53,7 @@ autoplay = "default"
 frame = 4
 frame_progress = 1.0
 script = ExtResource("2_rll4l")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, 4.17233e-07)
+scale = Vector2(0.8, 0.8)

@@ -256,7 +256,7 @@ libraries = {
 autoplay = "fly"
 
 [node name="Stats" parent="." instance=ExtResource("6_vid3d")]
-max_health = 100.0
+max_health = 200.0
 
 [node name="HurtBox" parent="." instance=ExtResource("7_u5tom")]
 collision_layer = 32

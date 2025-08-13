@@ -221,6 +221,7 @@ func _on_drop_timer_timeout() -> void:
 
 func die():
 	camera_2d.reparent(get_tree().current_scene)
+	Events.player_died.emit()
 	queue_free()
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:

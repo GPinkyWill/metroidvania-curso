@@ -15,6 +15,7 @@ var paused = false :
 	
 	
 func _process(delta: float) -> void:
+	if !MainInstances.player is Player: return
 	if Input.is_action_just_pressed("pause"):
 		paused = !paused
 		
@@ -27,3 +28,10 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_menu_pressed() -> void:
+	Sound.play("click", 1.0, -10.0)
+	WorldStash.data = {}
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/UI/Menus/start_menu.tscn")
