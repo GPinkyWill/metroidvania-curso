@@ -3,10 +3,12 @@ extends ColorRect
 
 
 func _on_start_game_pressed() -> void:
+	Sound.play("click", 1.0, -10.0)
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 
 func _on_load_game_pressed() -> void:
+	Sound.play("click", 1.0, -10.0)
 	print("load saved game")
 	pass # Replace with function body.
 

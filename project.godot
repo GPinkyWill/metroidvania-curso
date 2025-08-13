@@ -22,6 +22,7 @@ Events="*res://Events/Events.gd"
 PlayerStats="*res://Stats/player_stats.tscn"
 MainInstances="*res://Scripts/MainInstances.gd"
 WorldStash="*res://Events/WorldStash.gd"
+Sound="*res://Sound/sound.tscn"
 
 [display]
 
