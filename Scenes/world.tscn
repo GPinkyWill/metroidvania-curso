@@ -18,14 +18,14 @@ offset_top = 4.0
 offset_right = 4.0
 offset_bottom = 4.0
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("12_k0p8q")]
-visible = false
-
 [node name="MissileUI" parent="UI" instance=ExtResource("13_wsh4o")]
 offset_left = 4.0
 offset_top = 20.0
 offset_right = 19.0
 offset_bottom = 30.0
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("12_k0p8q")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_46m7q")]
 position = Vector2(-149, -8)

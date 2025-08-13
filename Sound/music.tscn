@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrds65482efj"]
+
+[ext_resource type="Script" path="res://Sound/music.gd" id="1_dwgk7"]
+[ext_resource type="AudioStream" uid="uid://blark8g26vkc7" path="res://Metroidvania Assets/music_and_sounds/music.ogg" id="2_yvk4h"]
+
+[node name="Music" type="Node"]
+process_mode = 3
+script = ExtResource("1_dwgk7")
+main_theme = ExtResource("2_yvk4h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
