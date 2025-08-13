@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bur25uy75qt41"]
+[gd_scene load_steps=12 format=3 uid="uid://bur25uy75qt41"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_hu3vb"]
 [ext_resource type="PackedScene" uid="uid://dqnoofxhcp821" path="res://Scenes/world_tile_map.tscn" id="1_sh511"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkjeu36rn5q01" path="res://Scenes/Enemies/crawlling_enemy.tscn" id="7_30qi7"]
 [ext_resource type="PackedScene" uid="uid://dda1qiofc6in8" path="res://Scenes/Enemies/flying_enemy.tscn" id="8_okute"]
 [ext_resource type="PackedScene" uid="uid://cg15m2v74vjhu" path="res://Scenes/brick.tscn" id="9_gelp0"]
+[ext_resource type="PackedScene" uid="uid://myykm6gi2ghw" path="res://Scenes/save_station.tscn" id="10_dcwro"]
 [ext_resource type="PackedScene" uid="uid://cp77lo0uquqfl" path="res://Scenes/PowerUps/missile_power_up.tscn" id="10_iwamk"]
 [ext_resource type="PackedScene" uid="uid://bvyhru2fgcw0t" path="res://Levels/door.tscn" id="11_rob00"]
 [ext_resource type="Resource" uid="uid://bt6j2kol0peqg" path="res://Scenes/Paths/one_two.tres" id="12_hfk3j"]
@@ -83,6 +84,11 @@ position = Vector2(1288, 40)
 position = Vector2(1576, 352)
 new_level_path = "res://Levels/level_two.tscn"
 connection = ExtResource("12_hfk3j")
+
+[node name="SaveDoor" type="Node" parent="."]
+
+[node name="SaveStation" parent="SaveDoor" instance=ExtResource("10_dcwro")]
+position = Vector2(-64, 16)
 
 [node name="CameraLimit" parent="." instance=ExtResource("13_uhw08")]
 visible = false

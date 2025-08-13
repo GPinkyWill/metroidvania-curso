@@ -5,6 +5,7 @@ const TEST_PATH = "res://save.txt"
 const PROD_PATH = "user://metroidvania_save.save"
 
 var save_path = TEST_PATH
+var is_loading = false
 
 func save_game():
 	WorldStash.stash("level", "file_path", MainInstances.level.scene_file_path)

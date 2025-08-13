@@ -10,12 +10,9 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Events.door_entered.connect(change_level)
 	Music.play(Music.main_theme)
-	
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("save"):
-		SaveManager.save_game()
-	if Input.is_action_just_pressed("load"):
+	if SaveManager.is_loading:
 		SaveManager.load_game()
+		SaveManager.is_loading = false
 
 func load_level(file_path):
 	level.queue_free()

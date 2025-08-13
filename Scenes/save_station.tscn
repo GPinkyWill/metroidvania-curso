@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://myykm6gi2ghw"]
+
+[ext_resource type="Script" path="res://Scripts/save_station.gd" id="1_jivlt"]
+[ext_resource type="Texture2D" uid="uid://dlxf45lwehutj" path="res://Metroidvania Assets/world/save_station.png" id="1_snrec"]
+[ext_resource type="Texture2D" uid="uid://cuqo4b3xdl4oh" path="res://Metroidvania Assets/ui/white_square.png" id="3_ot1ps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0uvs"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_xdlob"]
+resource_name = "save"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteSpaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(-8.9407e-08, -14), Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteSpaceSprite:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1.25), Vector2(1, 1.25), Vector2(0, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_poyg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteSpaceSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteSpaceSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_so6q1"]
+_data = {
+"RESET": SubResource("Animation_poyg8"),
+"save": SubResource("Animation_xdlob")
+}
+
+[node name="SaveStation" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_jivlt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("1_snrec")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, 0, -8, -4, 8, -4, 13, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_x0uvs")
+
+[node name="WhiteSpaceSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(1e-05, 1.25)
+texture = ExtResource("3_ot1ps")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_so6q1")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

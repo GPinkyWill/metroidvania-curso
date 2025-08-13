@@ -1,1 +1,1 @@
-{"@Node2D@25_MissilePowerUp_(600, 32)":{"freed":true},"Level_One_MissilePowerUp_(600, 32)":{"freed":true},"level":{"file_path":"res://Levels/level_one.tscn"}}
+{"level":{"file_path":"res://Levels/level_one.tscn"},"player":{"x":-74.0385437011719,"y":11.9887456893921}}
