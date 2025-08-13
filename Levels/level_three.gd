@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 @onready var bricks: Node2D = $Bricks
 @onready var trigger: Area2D = $Trigger
