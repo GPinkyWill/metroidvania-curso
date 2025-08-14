@@ -29,6 +29,14 @@ func _ready() -> void:
 func _process(delta):
 	if !state: return
 	state.call(delta)
+	difficulty_check()
+
+
+func difficulty_check():
+	if stats.health < 75:
+		acceleration = 400
+		max_speed = 1600
+		fire_rate_timer.wait_time = 0.025 
 
 
 func set_state(value):
@@ -54,6 +62,7 @@ func rush_state(delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
 	move(delta)
+	print("moving")
 	
 
 func fire_state(delta):
@@ -66,7 +75,7 @@ func fire_state(delta):
 		var stinger = Utils.instantiate_scene_on_level(StingerScene, muzzle.global_position)
 		stinger.rotation = stinger_pivot.rotation
 		stinger.update_velocity()
-
+	print("shooting")
 
 func move(delta):
 	translate(velocity * delta)
@@ -98,6 +107,7 @@ func decelerate_state(delta):
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 	stats.health -= damage
+	print(stats.health)
 
 
 func _on_stats_no_health() -> void:

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func play(song, pausable = false):
-	if volume_fade and volume_fade.is_valid() and pausable:
+	if volume_fade and volume_fade.is_valid():
 		volume_fade.kill()
 	if audio_stream_player.volume_db < 0.0:
 		audio_stream_player.volume_db = last_volume_db
