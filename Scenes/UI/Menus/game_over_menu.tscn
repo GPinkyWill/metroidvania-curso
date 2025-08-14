@@ -25,7 +25,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
-text = "Game Paused"
+text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 

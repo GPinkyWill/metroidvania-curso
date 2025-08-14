@@ -11,6 +11,8 @@ const EnemyDeathEffectScene = preload("res://Effects/enemy_death_effect.tscn")
 @onready var bullet_spawn_point: Marker2D = $BulletSpawnPoint
 @onready var fire_direction: Marker2D = $FireDirection
 
+var bullet_has_sound := false
+
 
 func fire_bullet():
 	#Sem acessar a função update_velocity do projectile não ocorre a rotação do sprite do tiro da planta
@@ -20,6 +22,8 @@ func fire_bullet():
 	var velocity = direction.normalized() * bullet_speed
 	velocity = velocity.rotated(randf_range(-deg_to_rad(spread/2), deg_to_rad(spread/2)))
 	bullet.velocity = velocity
+	if bullet_has_sound:
+		Sound.play("bullet",randf_range(1.2, 2), -5)
 
 func _on_hurt_box_hurt(hitbox: Variant, damage: Variant) -> void:
 	stats.health -= damage
@@ -29,3 +33,11 @@ func _on_stats_no_health() -> void:
 	var displacement = global_position - Vector2(0,8).rotated(rotation)
 	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, displacement)
 	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	bullet_has_sound = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	bullet_has_sound = false

@@ -9,7 +9,8 @@ var velocity = Vector2.ZERO
 var screen_entered = false
 
 func _ready() -> void:
-	Sound.play("bullet",randf_range(1.2, 2), -5)
+	#Sound.play("bullet",randf_range(1.2, 2), -5)
+	pass
 
 func update_velocity():
 	velocity.x = speed

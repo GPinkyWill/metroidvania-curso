@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc5ogjk7ayp88"]
+[gd_scene load_steps=5 format=3 uid="uid://dc5ogjk7ayp88"]
 
 [ext_resource type="PackedScene" uid="uid://df3fw1ycs3a4o" path="res://Scenes/projectile.tscn" id="1_hum36"]
+[ext_resource type="Script" path="res://Scripts/stinger.gd" id="2_1eabi"]
 [ext_resource type="Texture2D" uid="uid://byq57wfd0y5hf" path="res://Metroidvania Assets/enemies/boss_stinger.png" id="2_q0hpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_leyik"]
 size = Vector2(22, 2)
 
 [node name="Stinger" instance=ExtResource("1_hum36")]
+script = ExtResource("2_1eabi")
 speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
