@@ -18,7 +18,6 @@ func _ready() -> void:
 		SaveManager.load_game()
 		SaveManager.is_loading = false
 	else:
-		print("level is ", level, " and first_level is ", first_level)
 		level = first_level.instantiate()
 		add_child(level)
 		
