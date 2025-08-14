@@ -20,5 +20,7 @@ func _on_trigger_trigger_entered() -> void:
 
 
 func _on_boss_enemy_tree_exited() -> void:
-	brick_3.queue_free()
-	brick_4.queue_free()
+	if brick_3 != null:
+		brick_3.queue_free()
+	if brick_4 != null:
+		brick_4.queue_free()
