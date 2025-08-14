@@ -20,6 +20,7 @@ var time_to_go_back_to_spawn = false
 var spawn_marker : Vector2
 
 var can_chase = false
+var track_can_chase = false
 var state
 var direction = 1
 
@@ -37,6 +38,9 @@ func _physics_process(delta: float) -> void:
 	
 	state.call(delta)
 	check_chase(delta)
+	if track_can_chase:
+		if way_point_pathfinding.can_see_target(global_position):
+			keep_track_of_following()
 	move_and_slide()
 
 func move_toward_position(target_position, delta):
@@ -90,16 +94,20 @@ func _on_stats_no_health() -> void:
 	Utils.instantiate_scene_on_level(EnemyDeathEffect, global_position)
 	queue_free()
 
-
-
-func _on_vision_range_body_entered(body: Node2D) -> void:
-	if body != MainInstances.player: return
-	if !way_point_pathfinding.can_see_target: return
+func keep_track_of_following():
 	way_point_pathfinding.can_see_target(global_position)
 	can_chase = true
 	chase_timer.start()
 
+
+func _on_vision_range_body_entered(body: Node2D) -> void:
+	track_can_chase = true
+	if body != MainInstances.player: return
+	if !way_point_pathfinding.can_see_target(global_position): return
+	keep_track_of_following()
+
 func _on_vision_range_body_exited(body: Node2D) -> void:
+	track_can_chase = false
 	if !body == MainInstances.player: return
 	if stats.health > 0:
 		chase_timer.start()
