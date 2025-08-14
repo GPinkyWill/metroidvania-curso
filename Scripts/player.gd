@@ -49,7 +49,7 @@ var state = move_state
 
 func _ready() -> void:
 	PlayerStats.no_health.connect(die)
-
+	camera_position_smoothing()
 #localização do player pros inimigos que precisarem dessa informação
 func _enter_tree() -> void:
 	MainInstances.player = self
@@ -218,8 +218,12 @@ func create_dust_effect():
 func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
 
+func camera_position_smoothing():
+	await get_tree().create_timer(1.0).timeout
+	camera_2d.position_smoothing_enabled = true
 
 func die():
+	camera_2d.position_smoothing_enabled = false
 	camera_2d.reparent(get_tree().current_scene)
 	Events.player_died.emit()
 	queue_free()

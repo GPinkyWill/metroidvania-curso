@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr116cwohj63l"]
+[gd_scene load_steps=6 format=3 uid="uid://dr116cwohj63l"]
 
 [ext_resource type="PackedScene" uid="uid://3th3a56n1xr0" path="res://Scenes/player.tscn" id="1_46m7q"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_bxnfi"]
-[ext_resource type="PackedScene" uid="uid://bur25uy75qt41" path="res://Levels/level_one.tscn" id="6_x46xn"]
 [ext_resource type="PackedScene" uid="uid://cqvldi1qs36a2" path="res://Scenes/UI/health_meter.tscn" id="8_l6hk2"]
 [ext_resource type="PackedScene" uid="uid://dchlvney2lkkg" path="res://Scenes/UI/Menus/pause_menu.tscn" id="12_k0p8q"]
 [ext_resource type="PackedScene" uid="uid://cxjarle8307e4" path="res://Scenes/UI/missile_ui.tscn" id="13_wsh4o"]
@@ -30,5 +29,3 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("1_46m7q")]
 position = Vector2(-149, -8)
 safe_margin = 0.1
-
-[node name="Level_One" parent="." instance=ExtResource("6_x46xn")]
